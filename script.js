@@ -25,7 +25,7 @@ function getPlayerChoice () {
 
 //Get Computer Choice Function
 function getComputerChoice () {
-    //give a random number from 0 - 9
+    //give a random number from 0 - 8
     let num = Math.floor(Math.random() * 9);
 
     //if num is 0-2 return rock
@@ -35,7 +35,7 @@ function getComputerChoice () {
         //if num is 3-5 return paper
         return "Paper";
     } else {
-        //if num is 7-9 return scissors 
+        //if num is 6-8 return scissors 
     return "Scissors";
     }
 }
