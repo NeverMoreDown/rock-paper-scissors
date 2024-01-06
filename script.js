@@ -48,53 +48,26 @@ function singleRound () {
     console.log(playerSelection);
     console.log(computerSelection);
 
-    // if rock & rock result is Tie 
-    if (playerSelection === "Rock" && computerSelection === "Rock") {
+    // if rock & rock or paper & paper or scissors & scissors result is Tie 
+    if (playerSelection === "Rock" && computerSelection === "Rock" 
+    || playerSelection === "Paper" && computerSelection === "Paper"
+    || playerSelection === "Scissors" && computerSelection === "Scissors") {
         console.log("TIE!! Play Again!");
         //run singleRound Function
         return singleRound();
 
-    } else if (playerSelection === "Rock" && computerSelection === "Paper") {
-        // if Rock & Paper, paper beats rock, player loses return result text
+    } else if (playerSelection === "Rock" && computerSelection === "Paper" 
+    || playerSelection === "Paper" && computerSelection === "Scissors"
+    || playerSelection === "Scissors" && computerSelection === "Rock") {
+        // if Rock & Paper or Paper & Scissors or Scissors & Rock,  player loses return result text
         computerScore += 1;
         console.log(`You Lose! ${computerSelection} beats ${playerSelection}`);
 
-    } else if (playerSelection === "Rock" && computerSelection === "Scissors") {
-        //if Rock & Scissors, rock beats scissors, player wins return result 
+    } else {
+        //if Rock & Scissors or Paper & Rock or Scissors & Paper player wins return result 
         playerScore += 1;
         console.log(`You Win! ${playerSelection} beats ${computerSelection}`);
 
-    } else if (playerSelection === "Paper" && computerSelection === "Paper") {
-        // if Paper & Paper result is Tie 
-        console.log("TIE!! Play Again!");
-        //run singleRound Function
-        return singleRound();
-
-    } else if (playerSelection === "Paper" && computerSelection === "Rock") {
-        //if Paper & Rock, paper beats rock, player wins return result 
-        playerScore += 1;
-        console.log(`You Win! ${playerSelection} beats ${computerSelection}`);
-
-    } else if (playerSelection === "Paper" && computerSelection === "Scissors") {
-        // if Rock & Paper, scissors beats paper, player loses return result text
-        computerScore += 1;
-        console.log(`You Lose! ${computerSelection} beats ${playerSelection}`);
-
-    } else if (playerSelection === "Scissors" && computerSelection === "Scissors") {
-        // if Scissors & Scissors result is Tie 
-        console.log("TIE!! Play Again!");
-        //run singleRound Function
-        return singleRound();
-
-    } else if (playerSelection === "Scissors" && computerSelection === "Rock") {
-        // if Scissors & Rock, rock beats scissors, player loses return result text
-        computerScore += 1;
-        console.log(`You Lose! ${computerSelection} beats ${playerSelection}`);
-
-    } else if (playerSelection === "Scissors" && computerSelection === "Paper") {
-        //if Scissors & Paper, scissors beats paper, player wins return result 
-        playerScore += 1;
-        console.log(`You Win! ${playerSelection} beats ${computerSelection}`);
     }
 }
 
@@ -108,16 +81,18 @@ function game () {
     for( i = 0; i < 5; i++) {
         //call single round function 
         singleRound();
+        //log current round
         console.log(`Round ${i + 1}`);
+        //log current score for game
         console.log(`Score: ${playerScore} to ${computerScore}`)
     }
 
     //if after 5 rounds the player score is higher than computer score you win
     if(playerScore > computerScore) {
-        return "YOU WIN!!!"
+        return "YOU WIN THE GAME!!!"
     } else {
         // if the computer score is higher than the player score you lose 
-        return "YOU LOSE..."
+        return "YOU LOSE THE GAME..."
     }
 
 }
