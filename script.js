@@ -3,9 +3,17 @@ const rockBtn = document.querySelector('#rockBtn');
 const paperBtn = document.querySelector('#paperBtn');
 const scissorsBtn = document.querySelector('#scissorsBtn');
 
+//create variable for Results 
+const playerChoice = document.querySelector('#playerChoice');
+const compChoice = document.querySelector('#compChoice');
+const round = document.querySelector('#round');
+const score = document.querySelector('#score');
+const roundResult = document.querySelector('#roundResult');
+const results = document.querySelector('#results');
+
 //add event listener for DOM BUTTONS that calls singleRound Func
 rockBtn.addEventListener('click', singleRound);
-paperBtn.addEventListener('click',singleRound);
+paperBtn.addEventListener('click', singleRound);
 scissorsBtn.addEventListener('click',singleRound);
 
 //define player score
@@ -14,24 +22,9 @@ let playerScore = 0;
 //define computer score
 let computerScore = 0;
 
-//Get Player Choice
-function getPlayerChoice () {
-    //prompt user to select rock paper or scissors 
-   let userChoice = prompt('Type Rock, Paper, or Scissors');
+//define round number
+let roundNum = 0;
 
-   //allow user to type answer in any case 
-   //and return it with only first char uppercase 
-   let choice = userChoice[0].toUpperCase() + userChoice.slice(1).toLowerCase();
-
-   //check if choice is Rock Paper or Scissors if not get player choice again 
-   if (choice === "Rock" || choice === "Paper" || choice == "Scissors") {
-    return choice 
-   } else {
-    console.log("That was not an option, choose again")
-    return getPlayerChoice();
-   }
-
-}
 
 //Get Computer Choice Function
 function getComputerChoice () {
@@ -51,58 +44,91 @@ function getComputerChoice () {
 }
 
 //Function that plays a single round of Rock Paper Scissors
-function singleRound () {
-    let playerSelection = getPlayerChoice();
+function singleRound (e) {
+
+    // set playerSelection to be which button player clicks 
+    let playerSelection = e.target.textContent; 
     let computerSelection = getComputerChoice();
 
-    console.log(playerSelection);
-    console.log(computerSelection);
+    playerChoice.textContent = `You Chose ${playerSelection}`;
+    compChoice.textContent = `Computer Chose ${computerSelection}`;
+
 
     // if rock & rock or paper & paper or scissors & scissors result is Tie 
     if (playerSelection === "Rock" && computerSelection === "Rock" 
     || playerSelection === "Paper" && computerSelection === "Paper"
     || playerSelection === "Scissors" && computerSelection === "Scissors") {
-        console.log("TIE!! Play Again!");
-        //run singleRound Function
-        return singleRound();
+        roundResult.textContent = "TIE!! Play Again!";
+        console.log(roundNum);
+        round.textContent = `Round ${roundNum}`;
+        
 
     } else if (playerSelection === "Rock" && computerSelection === "Paper" 
     || playerSelection === "Paper" && computerSelection === "Scissors"
     || playerSelection === "Scissors" && computerSelection === "Rock") {
         // if Rock & Paper or Paper & Scissors or Scissors & Rock,  player loses return result text
         computerScore += 1;
-        console.log(`You Lose! ${computerSelection} beats ${playerSelection}`);
+        console.log(`before ${roundNum}`);
+        roundNum += 1;
+        console.log(`after ${roundNum}`);
+        round.textContent = `Round ${roundNum}`;
+
+        if(roundNum == 5 && computerScore > playerScore) {
+            roundResult.textContent = 'GAME OVER COMPUTER WINS';
+
+            playerScore = 0;
+            computerScore = 0;
+            roundNum = 0;
+
+
+        } else if (roundNum == 5 && playerScore > computerScore){
+            roundResult.textContent = 'YOU WON!';
+
+            playerScore = 0;
+            computerScore = 0;
+            roundNum = 0;
+        }
+
+        if (computerScore >= playerScore) {
+            score.textContent = `Score: ${computerScore} to ${playerScore}`
+        } else {
+            score.textContent = `Score: ${playerScore} to ${computerScore}`
+        }
+        roundResult.textContent = `You Lose! ${computerSelection} beats ${playerSelection}`;
 
     } else {
         //if Rock & Scissors or Paper & Rock or Scissors & Paper player wins return result 
         playerScore += 1;
-        console.log(`You Win! ${playerSelection} beats ${computerSelection}`);
+        console.log(`before ${roundNum}`);
+        roundNum += 1;
+        console.log(`after ${roundNum}`);
+        round.textContent = `Round ${roundNum}`;
+
+        if(roundNum == 5 && computerScore > playerScore) {
+            roundResult.textContent = 'GAME OVER COMPUTER WINS';
+
+            playerScore = 0;
+            computerScore = 0;
+            roundNum = 0;
+
+        } else if (roundNum == 5 && playerScore > computerScore){
+            roundResult.textContent = 'YOU WON!';
+
+            playerScore = 0;
+            computerScore = 0;
+            roundNum = 0;
+
+        }
+
+        if (computerScore >= playerScore) {
+            score.textContent = `Score: ${computerScore} to ${playerScore}`
+        } else {
+            score.textContent = `Score: ${playerScore} to ${computerScore}`
+        }
+        roundResult.textContent = `You Win! ${playerSelection} beats ${computerSelection}`;
 
     }
 }
 
-// game function that loops for 5 rounds 
-function game () {
-    //reset player score and computer score 
-    playerScore = 0;
-    computerScore = 0;
 
-    //for loop that counts to five
-    for( i = 0; i < 5; i++) {
-        //call single round function 
-        singleRound();
-        //log current round
-        console.log(`Round ${i + 1}`);
-        //log current score for game
-        console.log(`Score: ${playerScore} to ${computerScore}`)
-    }
 
-    //if after 5 rounds the player score is higher than computer score you win
-    if(playerScore > computerScore) {
-        return "YOU WIN THE GAME!!!"
-    } else {
-        // if the computer score is higher than the player score you lose 
-        return "YOU LOSE THE GAME..."
-    }
-
-}
