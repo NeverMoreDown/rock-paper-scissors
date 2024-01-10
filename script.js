@@ -44,91 +44,53 @@ function getComputerChoice () {
 }
 
 //Function that plays a single round of Rock Paper Scissors
-function singleRound (e) {
-
-    // set playerSelection to be which button player clicks 
-    let playerSelection = e.target.textContent; 
+function singleRound(e) {
+    let playerSelection = e.target.textContent;
     let computerSelection = getComputerChoice();
 
     playerChoice.textContent = `You Chose ${playerSelection}`;
     compChoice.textContent = `Computer Chose ${computerSelection}`;
 
-
-    // if rock & rock or paper & paper or scissors & scissors result is Tie 
-    if (playerSelection === "Rock" && computerSelection === "Rock" 
-    || playerSelection === "Paper" && computerSelection === "Paper"
-    || playerSelection === "Scissors" && computerSelection === "Scissors") {
+    if (playerSelection === "Rock" && computerSelection === "Rock" ||
+        playerSelection === "Paper" && computerSelection === "Paper" ||
+        playerSelection === "Scissors" && computerSelection === "Scissors") {
         roundResult.textContent = "TIE!! Play Again!";
-        console.log(roundNum);
-        round.textContent = `Round ${roundNum}`;
-        
-
-    } else if (playerSelection === "Rock" && computerSelection === "Paper" 
-    || playerSelection === "Paper" && computerSelection === "Scissors"
-    || playerSelection === "Scissors" && computerSelection === "Rock") {
-        // if Rock & Paper or Paper & Scissors or Scissors & Rock,  player loses return result text
+    } else if (playerSelection === "Rock" && computerSelection === "Paper" ||
+        playerSelection === "Paper" && computerSelection === "Scissors" ||
+        playerSelection === "Scissors" && computerSelection === "Rock") {
         computerScore += 1;
-        console.log(`before ${roundNum}`);
         roundNum += 1;
-        console.log(`after ${roundNum}`);
-        round.textContent = `Round ${roundNum}`;
-
-        if(roundNum == 5 && computerScore > playerScore) {
-            roundResult.textContent = 'GAME OVER COMPUTER WINS';
-
-            playerScore = 0;
-            computerScore = 0;
-            roundNum = 0;
-
-
-        } else if (roundNum == 5 && playerScore > computerScore){
-            roundResult.textContent = 'YOU WON!';
-
-            playerScore = 0;
-            computerScore = 0;
-            roundNum = 0;
-        }
-
-        if (computerScore >= playerScore) {
-            score.textContent = `Score: ${computerScore} to ${playerScore}`
-        } else {
-            score.textContent = `Score: ${playerScore} to ${computerScore}`
-        }
         roundResult.textContent = `You Lose! ${computerSelection} beats ${playerSelection}`;
-
     } else {
-        //if Rock & Scissors or Paper & Rock or Scissors & Paper player wins return result 
         playerScore += 1;
-        console.log(`before ${roundNum}`);
         roundNum += 1;
-        console.log(`after ${roundNum}`);
-        round.textContent = `Round ${roundNum}`;
-
-        if(roundNum == 5 && computerScore > playerScore) {
-            roundResult.textContent = 'GAME OVER COMPUTER WINS';
-
-            playerScore = 0;
-            computerScore = 0;
-            roundNum = 0;
-
-        } else if (roundNum == 5 && playerScore > computerScore){
-            roundResult.textContent = 'YOU WON!';
-
-            playerScore = 0;
-            computerScore = 0;
-            roundNum = 0;
-
-        }
-
-        if (computerScore >= playerScore) {
-            score.textContent = `Score: ${computerScore} to ${playerScore}`
-        } else {
-            score.textContent = `Score: ${playerScore} to ${computerScore}`
-        }
         roundResult.textContent = `You Win! ${playerSelection} beats ${computerSelection}`;
+    }
 
+    if (roundNum === 5) {
+        if (computerScore > playerScore) {
+            round.textContent = `Round ${roundNum}`;
+            roundResult.textContent = 'GAME OVER COMPUTER WINS';
+            score.textContent = `Score: ${computerScore} to ${playerScore}`;
+        } else if (playerScore > computerScore) {
+            round.textContent = `Round ${roundNum}`;
+            roundResult.textContent = 'YOU WON!';
+            score.textContent = `Score: ${playerScore} to ${computerScore}`;
+        }
+        playerScore = 0;
+        computerScore = 0;
+        roundNum = 0;
+    } else {
+        if (computerScore >= playerScore) {
+            score.textContent = `Score: ${computerScore} to ${playerScore}`;
+        } else {
+            score.textContent = `Score: ${playerScore} to ${computerScore}`;
+        }
+        round.textContent = `Round ${roundNum}`;
     }
 }
+
+
 
 
 
