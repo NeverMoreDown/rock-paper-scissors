@@ -1,3 +1,13 @@
+//create variable for DOM BUTTONS 
+const rockBtn = document.querySelector('#rockBtn');
+const paperBtn = document.querySelector('#paperBtn');
+const scissorsBtn = document.querySelector('#scissorsBtn');
+
+//add event listener for DOM BUTTONS that calls singleRound Func
+rockBtn.addEventListener('click', singleRound);
+paperBtn.addEventListener('click',singleRound);
+scissorsBtn.addEventListener('click',singleRound);
+
 //define player score
 let playerScore = 0;
 
