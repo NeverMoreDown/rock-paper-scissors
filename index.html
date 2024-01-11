@@ -5,20 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="script.js" defer></script>
+    <style src="style.css"></style>
 </head>
 <body>
-    <div id="results">
-            <div id="playerChoice"></div>
-            <div id="compChoice"></div>
-            <div id="round"></div>
-            <div id="score"></div>
-            <div id="roundResult"></div>
+    <div id="container">
+        <div id="head">Rock Paper Scissors</div>
+            <div id="results">
+                <div id="choice">
+                    <div id="playerChoice"></div>
+                    <div id="compChoice"></div>
+                </div>
+                <div id="roundContainer"> 
+                    <div id="round"></div>
+                    <div id="score"></div>
+                    <div id="roundResult"></div>
+                </div>
+            </div>
+        </div>
+        <div id="btnContainer">
+            <button id="rockBtn">Rock</button>
+            <button id="paperBtn">Paper</button>
+            <button id="scissorsBtn">Scissors</button>
+        </div>
+        <div id="footer"></div>
     </div>
-    <div id="btnContainer">
-        <button id="rockBtn">Rock</button>
-        <button id="paperBtn">Paper</button>
-        <button id="scissorsBtn">Scissors</button>
-    </div>
-    
 </body>
 </html>
