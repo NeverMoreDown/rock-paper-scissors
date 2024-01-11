@@ -45,8 +45,10 @@ function getComputerChoice () {
 
 //Function that plays a single round of Rock Paper Scissors
 function singleRound(e) {
+
     // player selection is the text content of the button clicked
     let playerSelection = e.target.textContent;
+    
     // computer selection is equal to return val of getComputer Choice Function 
     let computerSelection = getComputerChoice();
 
@@ -60,14 +62,16 @@ function singleRound(e) {
     if (playerSelection === "Rock" && computerSelection === "Rock" ||
         playerSelection === "Paper" && computerSelection === "Paper" ||
         playerSelection === "Scissors" && computerSelection === "Scissors") {
+
         roundResult.textContent = "TIE!! Play Again!";
+
     } else if (playerSelection === "Rock" && computerSelection === "Paper" ||
         playerSelection === "Paper" && computerSelection === "Scissors" ||
         playerSelection === "Scissors" && computerSelection === "Rock") {
             //if computer choice beats player choice 
 
             //add to computers overall score 
-        computerScore += 1;
+        computerScore += 1; 
 
         //add to round number 
         roundNum += 1;
@@ -95,6 +99,7 @@ function singleRound(e) {
             round.textContent = `Round ${roundNum}`;
             roundResult.textContent = 'GAME OVER COMPUTER WINS';
             score.textContent = `Score: ${computerScore} to ${playerScore}`;
+
         } else if (playerScore > computerScore) {
         //if round is 5 and current player score is greater than computer score YOU WIN
             // show round 5, YOU WIN RESULT, and FINAL SCORE
@@ -107,6 +112,7 @@ function singleRound(e) {
         playerScore = 0;
         computerScore = 0;
         roundNum = 0;
+
     } else {
         //if the current round isn't 5
         if (computerScore >= playerScore) {
@@ -120,8 +126,3 @@ function singleRound(e) {
         round.textContent = `Round ${roundNum}`;
     }
 }
-
-
-
-
-
