@@ -4,30 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet'>
+    <link rel="stylesheet" type="text/css" href="style.css">
     <script src="script.js" defer></script>
-    <style src="style.css"></style>
 </head>
 <body>
-    <div id="container">
-        <div id="head">Rock Paper Scissors</div>
-            <div id="results">
-                <div id="choice">
-                    <div id="playerChoice"></div>
-                    <div id="compChoice"></div>
+        <div id="container">
+            <div id="head">Rock Paper Scissors</div>
+                <div id="results">
+                    <div id="results1">
+                        <div id="choice">
+                            <div id="playerChoice">You Chose</div>
+                            <div id="compChoice">Computer Chose</div>
+                        </div>
+                        <div id="roundContainer"> 
+                            <div id="round">Round 0</div>
+                            <div id="score">Score: 0 to 0</div>
+                        </div>
+                    </div> 
+                    <div id="resultContainer">
+                        <div id="roundResult">Pick Rock, Paper, or Scissors!</div>
+                    </div>
                 </div>
-                <div id="roundContainer"> 
-                    <div id="round"></div>
-                    <div id="score"></div>
-                    <div id="roundResult"></div>
-                </div>
+            <div id="btnContainer">
+                <button class="btn" id="rockBtn">Rock</button>
+                <button class="btn" id="paperBtn">Paper</button>
+                <button class="btn" id="scissorsBtn">Scissors</button>
             </div>
+            <div id="footer"></div>
         </div>
-        <div id="btnContainer">
-            <button id="rockBtn">Rock</button>
-            <button id="paperBtn">Paper</button>
-            <button id="scissorsBtn">Scissors</button>
-        </div>
-        <div id="footer"></div>
     </div>
 </body>
 </html>
